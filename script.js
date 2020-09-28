@@ -57,10 +57,11 @@ function shuffle(array) {
         let j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
+    console.log(array);
 }
 
 function getInt() {
-    if (POINTER === 11)
+    if (POINTER === 11 || POINTER === 0)
     {
         shuffle(massive);
         POINTER = 0;
