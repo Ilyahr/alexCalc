@@ -13,7 +13,8 @@ let POINTER = 0,
     TASKNUM = 0,
     digit = 0,
     miss = 0,
-    fine = 0;
+    fine = 0,
+    massive = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 
 // choose task
@@ -51,16 +52,32 @@ function getRandomInt(max) {
 
 // output the task on the page
 
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function getInt() {
+    if (POINTER === 11)
+    {
+        shuffle(massive);
+        POINTER = 0;
+    }
+    return massive[POINTER++];
+}
+
 function createTask(i, digit) {
     task.value = "";
     result.value = "";
     if (digit === 0) {
         firstMultiplier = i + 1;
-        secMultiplier = getRandomInt(11);
+        secMultiplier = getInt();
     }
     else if(digit === 1){
         firstMultiplier = getRandomInt(i + 2);
-        secMultiplier = getRandomInt(11);
+        secMultiplier = getInt();
     }
 
     task.innerHTML = firstMultiplier + " * " + secMultiplier;
